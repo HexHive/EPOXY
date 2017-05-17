@@ -1,0 +1,15 @@
+
+
+MCPU ?=cortex-m4
+
+
+%.bc:%.c
+	${RESIST_PATH}/clang  -c -target arm-none-eabi -mcpu=$(MCPU)  -flto -emit-llvm -flto -fshort-enums $< -o $@ 
+
+all: rt_edivirt_handlers.bc syscalls.bc
+	${RESIST_PATH}/llvm-link $^ -o rt_edivirt.o	
+
+
+clean:
+	rm -f *.o
+	rm -f *.bc

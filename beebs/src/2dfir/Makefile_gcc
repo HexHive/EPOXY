@@ -1,0 +1,26 @@
+
+top_srcdir :=$(shell readlink -f `pwd`/../..)
+
+ARCH=arm
+BOARD=stm32f4discovery
+CHIPSUPPORT_C = 1
+CHIP = stm32f407
+
+DIR=$(shell basename $(CURDIR))
+
+include Makefile.am
+include $(top_srcdir)/config/$(ARCH)/chips/$(CHIP)/chip.mk
+
+DEFINES = -DHAVE_CHIPSUPPORT_H
+
+LINKER_SCRIPT = $(top_srcdir)/config/$(ARCH)/chips/$(CHIP)/chip.ld
+
+COBJECTS=$(CSOURCES:%.c=%.o)
+all:
+	echo $(top_srcdir)
+	arm-none-eabi-gcc $($(DIR)_SOURCES) $(AM_CFLAGS) $(DEFINES) $(CHIP_CFLAGS) $(CHIP_LDFLAGS) -o $(DIR).elf
+	
+build/*.o:*.c
+
+$(DIR).elf: COBJECTS
+	

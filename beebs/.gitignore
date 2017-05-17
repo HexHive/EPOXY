@@ -1,0 +1,8 @@
+src/*/makefile
+src/*/build/*
+src/*/build.log
+bin.tar.gz
+bin
+src_org
+*~
+*.chm

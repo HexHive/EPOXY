@@ -1,0 +1,6 @@
+Region :Permissions   :Start       :Size :CBS
+0      :P-RW,U-RW,XN  :0x00000000  :4GB  :101
+4      :P-,U-,XN      :&__unsafestack_guard_start :32B  :101
+5      :P-RW,U-R,XN   :0xE000E000  :4KB  :101
+6      :P-RW,U-R,XN   :0x40013800  :512B  :101
+7      :P-R,U-R,X     :0x00000000  :256MB  :101

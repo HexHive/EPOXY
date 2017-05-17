@@ -1,0 +1,39 @@
+
+#include "data_traps_support.h"
+#include <stdio.h>
+
+#if DATA_TRAPS_DEBUG
+//This is used to do testing of the Data Traps
+int __attribute__ ((weak)) main(){
+    static uintptr_t __data_traps_node1 = 0;
+    static uintptr_t __data_traps_node2 = (uintptr_t) &__data_traps_node1;
+    static uintptr_t  __data_traps_node3 = (uintptr_t) &__data_traps_node2;
+    static uintptr_t  __data_traps_node4 = (uintptr_t) &__data_traps_node3;
+    static uintptr_t __data_traps_node5 = (uintptr_t) &__data_traps_node4;
+    static uintptr_t __data_traps_node6 = (uintptr_t) &__data_traps_node5;
+    uintptr_t * node;
+    int i;
+    node= &__data_traps_node6;
+    while (node !=0){
+        printf ("Node addr 0x%08x, ->0x%08x\n",(uint32_t)node,(uint32_t)*node);
+        //fflush(stdout);
+        node = (uintptr_t *) *node;
+    }
+    printf("Calling Set Head\n");
+    __data_traps_set_head(&__data_traps_node6,6);
+    printf("Calling init Traps\n");
+
+    __data_traps_init();
+    /*node=(uint32_t **) &__data_traps_node6;
+    for (i=0; i<6;i++){
+        printf ("Node addr 0x%08x, ->0x%08x\n",(uint32_t)node,(uint32_t)*node);
+        node = (uint32_t **) *node;
+    }*/
+   
+    printf("Checking\n");
+    __data_traps_check();
+    printf("Done\n");
+
+}
+
+#endif
