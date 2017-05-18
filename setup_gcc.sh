@@ -5,7 +5,7 @@ if [ ! -e ../gcc/bins ]
 then
   mkdir -p ../gcc
   cd ../gcc
-  if [ ! -e gcc-arm-none-eabi-6-2017-q1-update/pkg ]
+  if [ ! -e gcc-arm-none-eabi-6-2017-q1-update/pkg/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2 ]
   then
      if [ ! -e gcc-arm-none-eabi-6-2017-q1-update-src.tar.bz2 ]
      then
@@ -23,7 +23,7 @@ then
      cd .. #should be at gcc
   fi
   cd gcc-arm-none-eabi-6-2017-q1-update/pkg
-  tar -xjf gcc-arm-none-eabi-6-2017-q1-update-linux.tar.bz2
-  mv gcc-arm-none-eabi-6-2017-q1-update ../../bins
+  tar -xjf gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2
+  mv gcc-arm-none-eabi-6-2017-q2-update ../../bins
   cd ${SETUP_DIR}
 fi

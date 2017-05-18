@@ -15,9 +15,9 @@ FUNCTION_PADDING:=0
 # ======================== PATHS To TOOLS=====================================
 
 # FROM BINUTILS
-LD:=arm-none-eabi-ld.bfd
+LD:=../../../../gcc/bins/bin/arm-none-eabi-ld.bfd
 #LD:=arm-none-eabi-ld
-BINUTILS_SIZE:=arm-none-eabi-size
+BINUTILS_SIZE:=../../../../gcc/bins/bin/arm-none-eabi-size
 
 CLANG_OPTIONS:=
 LINK_OPTIONS:=
